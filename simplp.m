@@ -10,6 +10,5 @@ for i = 2:1:N
     y(i) = x(i) + x(i-1);
 end
 
-
 end
 

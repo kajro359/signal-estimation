@@ -1,0 +1,11 @@
+function y = fsimplp(x, h)
+%FSIMPLP Filters a time-dependant signal x with the filter h
+%   y = fsimpl(x, h) returns the
+
+X = fft(x);
+H = fft(h);
+Y = X.*H;
+y = ifft(Y);
+
+end
+

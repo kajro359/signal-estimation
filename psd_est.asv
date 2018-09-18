@@ -1,0 +1,9 @@
+function Ry = psd_est(y)
+%PSD_EST Returns the estimated powered spectral density of input process y
+%   Detailed explanation goes here
+
+ry = afc_est(y);
+
+
+end
+
