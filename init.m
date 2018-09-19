@@ -19,4 +19,4 @@ wgn_x = wgn(1, N, 0);
 [b,a] = butter(1,0.5);
 
 y = simplp(wgn_x);
-y_i = fsimplp(wgn_x,h_i);
+%y_i = fsimplp(wgn_x,h_i);
