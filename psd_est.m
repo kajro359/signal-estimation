@@ -9,5 +9,6 @@ N = length(y);
 Y = fft(y);
 Ry_hat = (abs(Y) .^ 2) / N;
 
+
 end
 

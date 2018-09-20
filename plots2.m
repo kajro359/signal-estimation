@@ -1,5 +1,22 @@
+% [b,  a] = butter(1, 0.5);
+% y=filter(b, a, x);
+% 
+% [d, c] = butter(7, 0.5);
+% 
+% y1 = filter(d, c, x);
+% 
+% figure(1)
+% subplot(121)
+% plot(y)
+% title('y, butter-1-filtered')
+% subplot(122)
+% plot(y1)
+% title('y1, butter-7-filtered')
 figure(1)
 subplot(121)
-plot(y)
+plot(Rx_hat_avg)
+title('averaged periodogram');
 subplot(122)
-plot(y_i)
+plot(abs(Rx_hat_smooth))
+title('smoothed averaged periodogram');
+
