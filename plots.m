@@ -13,10 +13,10 @@ figure(1)
 subplot(131), plot(y);
 axis([0 1024 -4 4])
 title('1:st order LP-filtered');
-subplot(132), plot(y2);
+subplot(132), plot(yb);
 axis([0 1024 -4 4])
 title('butter 7:th order LP-filtered');
-subplot(133), plot(y);
+subplot(133), plot(yc);
 axis([0 1024 -4 4])
 title('cheby1 7:th order LP-filtered');
 
@@ -31,8 +31,12 @@ plot(tau, ry_hat)
 axis tight;
 title('ry estimate')
 
-
 figure(4) 
-plot(tau, ry1_hat)
+plot(tau, ryb_hat)
 axis tight;
-title('ry1 estimate')
+title('ryb estimate')
+
+figure(5) 
+plot(tau, ryc_hat)
+axis tight;
+title('ryc estimate')

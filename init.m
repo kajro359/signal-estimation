@@ -27,7 +27,13 @@ x = randn(1, 2^10);
 y=filter(b, a, x); 
 
 [d, c] = butter(7, 0.5); %7:th-order LP-filter, approximating ideal filter
-y1 = filter(d, c, x);
+yb = filter(d, c, x);
 
 [f, e] = cheby1(7, 0.5, 0.5);
-y2 = filter(f, e, x);
+yc = filter(f, e, x);
+
+ry_hat = acf_est(y);
+ryb_hat = acf_est(yb);
+ryc_hat = acf_est(yc);
+
+

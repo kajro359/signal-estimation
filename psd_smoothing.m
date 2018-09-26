@@ -1,6 +1,8 @@
-function y = psd_smoothing(x, M, type)
-%SMOOTHING Smooths a signal
-%   Convolves a signal 
+function y = psd_smoothing(X, M, type)
+%SMOOTHING Smooths a dataset
+%   M is width of window
+%   X the data to be smoothed
+%   type is type of window used('rect', 'hamming' or 'blackman')
 
 %smooth individual segments in per_avg=========?
 %may need to scale the transform
@@ -21,10 +23,10 @@ end
         w = padarray(w, [0 N/2 - floor(length(w)/2) - 1], 0, 'both');
         w = [w 0];
         plot(w)
-        %disp(length(w))
+        disp(length(w))
         W = fft(w);
         %plot(abs(W))
-        y = conv(W, x, 'same');
+        y = conv(W, X, 'same');
         %y = y1(1:size(x));
 
 end
