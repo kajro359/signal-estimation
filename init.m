@@ -15,7 +15,8 @@ t = (0:1:N-1);
 k = t;
 h = exp(-t); %first order filter in the time-domain
 
-Theta = (0:2*N-1)/(2*N-1); %normalized frequency vector
+freq = 0 : 2*pi / N : 2*pi - (2*pi) / N; %normalized frequency vector
+normfreq = freq / (2 * pi);
 
 K = [-flip(k) k];
 
@@ -27,3 +28,6 @@ y=filter(b, a, x);
 
 [d, c] = butter(7, 0.5); %7:th-order LP-filter, approximating ideal filter
 y1 = filter(d, c, x);
+
+[f, e] = cheby1(7, 0.5, 0.5);
+y2 = filter(f, e, x);
