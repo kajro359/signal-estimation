@@ -1,23 +1,31 @@
 function y = psd_smoothing(x, M, type)
-%SMOOTHING Summary of this function goes here
-%   Detailed explanation goes here
+%SMOOTHING Smooths a signal
+%   Convolves a signal 
+
+%smooth individual segments in per_avg=========?
+%may need to scale the transform
 global N;
 if mod(M,2) == 0
     M = M-1; %N must be odd
 end
 
-%w = zeros(1, 2*N);
-
 switch type
     case 'rect'
         w = rectwin(M);
+    case 'hamming'
+        w = hamming(M);
+    case 'blackman' 
+        w = blackman(M);
+end         
         w = w';
-        w = padarray(w, [0 length(x)-length(w)], 'post');
+        w = padarray(w, [0 N/2 - floor(length(w)/2) - 1], 0, 'both');
+        w = [w 0];
+        plot(w)
+        %disp(length(w))
         W = fft(w);
-        plot(abs(W))
-        y1 = conv(W, x);
-        y = y1(1:size(x));
-end     
+        %plot(abs(W))
+        y = conv(W, x, 'same');
+        %y = y1(1:size(x));
 
 end
 

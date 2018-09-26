@@ -22,7 +22,7 @@ K = [-flip(k) k];
 %x = wgn(1, N, 0);
 x = randn(1, 2^10); 
 
-[b,  a] = butter(1, 0.5); %first-order LP-filter
+[b, a] = butter(1, 0.5); %first-order LP-filter
 y=filter(b, a, x); 
 
 [d, c] = butter(7, 0.5); %7:th-order LP-filter, approximating ideal filter

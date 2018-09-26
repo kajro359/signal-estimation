@@ -15,6 +15,7 @@
 figure(1)
 subplot(121)
 plot(Rx_hat_avg)
+axis([0 25 0 6])
 title('averaged periodogram');
 subplot(122)
 plot(abs(Rx_hat_smooth))
