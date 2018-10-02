@@ -22,7 +22,9 @@ K = [-flip(k) k];
 
 %x = wgn(1, N, 0);
 x = randn(1, 2^10); 
+rx_hat = acf_est(x);
 
+%%
 [b, a] = butter(1, 0.5); %first-order LP-filter
 y=filter(b, a, x); 
 
