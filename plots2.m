@@ -8,7 +8,7 @@ Ry_hat = psd_est(y);
 Ryb_hat = psd_est(yb);
 Y = abs(fft(y));
 Yb = abs(fft(yb));
-Y33 = abs(fft(y33));
+% Y33 = abs(fft(y33));
 figure(1)
 subplot(221)
 plot(y)
@@ -22,6 +22,10 @@ title('Y');
 subplot(224)
 plot(Yb)
 title('Yb');
+
+X = fft(x);
+figure(3)
+plot(abs(X));
 % figure(1)
 % subplot(121)
 % plot(Rx_avg)

@@ -13,13 +13,12 @@ tl = 10; %i'm setting the length in time of noise-signal to tl seconds.
 
 count = 0;
 N = 2^10; %set to 2^16 for demo
-t = (0:1:N-1);
+% t = (0:1:N-1);
+t = (-N/2:1:N/2-1);
 n = t;
 k = t;
 h = exp(-t); %first order filter in the time-domainx
 fs = N / tl; % sampling frequency.. ??
-
-
 
 freq = 0 : 2*pi / N : 2*pi - (2*pi) / N; %normalized frequency vector ( ?? rad/s)(???)
 normfreq = freq / (2 * pi);
@@ -34,7 +33,7 @@ rx_hat = acf_est(x);
 % figure(2), plot(x2);
 
 %%
-[b, a] = butter(1, 0.5); %first-order LP-filter
+[b, a] = butter(1, 0.1); %first-order LP-filter
 %a1, b1 numerator, denominator for 1st order filter.. doesn't seem so
 % %good-...
 a1 = 1;
@@ -44,12 +43,12 @@ y=filter(b, a, x);
 % y33 = filter(lpFilt, x);
 y2 = filter(b1, a1, x);
 % y2 = simplp(x);
-figure(1)
-subplot(121), plot(y), axis tight, title('butter-filtered');
-subplot(122), plot(y2), axis tight, title('homemade-filtered');
+% figure(1)
+% subplot(121), plot(y), axis tight, title('butter-filtered');
+% subplot(122), plot(y2), axis tight, title('homemade-filtered');
 %%
 
-[d, c] = butter(7, 0.5); %7:th-order LP-filter, approximating ideal filter
+[d, c] = butter(7, 0.2); %7:th-order LP-filter, approximating ideal filter
 yb = filter(d, c, x);
 
 [f, e] = cheby1(7, 0.5, 0.5);
