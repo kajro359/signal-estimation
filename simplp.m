@@ -7,7 +7,7 @@ y=zeros(N,1).';
 y(1)=x(1);
 
 for i = 2:1:N
-    y(i) = x(i) + x(i-1);
+    y(i) = 0.5*x(i) + 0.5*x(i-1);
 end
 
 end
