@@ -24,7 +24,7 @@ freq = 0 : 2*pi / N : 2*pi - (2*pi) / N; %normalized frequency vector ( ?? rad/s
 normfreq = freq / (2 * pi);
 
 
-K = [-flip(n) n];
+K = [-flip(n) n+1];
 
 x = wgn(1, N, 0);
 % x2 = randn(1, N); 
@@ -33,7 +33,7 @@ x = wgn(1, N, 0);
 % figure(2), plot(x2);
 
 %%
-[b, a] = butter(1, 0.1); %first-order LP-filter
+[b, a] = butter(1, 0.5); %first-order LP-filter
 %a1, b1 numerator, denominator for 1st order filter.. doesn't seem so
 % %good-...
 a1 = 1;
@@ -48,9 +48,10 @@ y2 = filter(b1, a1, x);
 % subplot(122), plot(y2), axis tight, title('homemade-filtered');
 %%
 
-[d, c] = butter(7, 0.2); %7:th-order LP-filter, approximating ideal filter
-yb = filter(d, c, x);
+[d, c] = butter(7, 0.5); %7:th-order LP-filter, approximating ideal filter
 
+yb = filter(d, c, x);
+%%
 [f, e] = cheby1(7, 0.5, 0.5);
 yc = filter(f, e, x);
 % ry_hat = acf_est(y);

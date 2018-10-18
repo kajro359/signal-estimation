@@ -29,6 +29,6 @@ function r_hat = acf_est(y)
     r_hat1 = r_hat1/N;
     
     r_hat(1:N) = flip(r_hat1); %this works if process is WSS? white noise is WSS
-    r_hat(N+1:end) = r_hat1;
+    r_hat(N+1:end) = [r_hat1(2 : end) 0];
 end
 

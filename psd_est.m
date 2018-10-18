@@ -6,7 +6,8 @@ function Ry_hat = psd_est(y)
 %Ry_hat = fft(ry_hat);
 
 N = length(y);
-Y = fftshift(fft(y));
+% Y = fftshift(fft(y));
+Y = fft(y);
 Ry_hat = (abs(Y) .^ 2) / N;
 
 
