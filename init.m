@@ -60,6 +60,7 @@ yc = filter(f, e, x);
 % a2 = 1;
 % b2 = [1 1 1 1 1 1 1] / 7;
 % y3 = filter(b2, a2, x);
-% figure(2)
-% subplot(121), plot(yb), axis tight, title('high order butter-filtered');
-% subplot(122), plot(yc), axis tight, title('high order cheby-filtered');
+%%
+figure(2)
+subplot(121), plot(y), axis tight, title('low order-filtered');
+subplot(122), plot(yb), axis tight, title('high order butter-filtered');
