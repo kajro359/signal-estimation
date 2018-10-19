@@ -1,10 +1,14 @@
 function R_hat_avg = per_avg(y, K)
 %PER_AVG Returns an averaged periodogram of a signal
 %   Calculates K estimated periodograms and returns the average of these.
-%   This is known as Bartlett's method. Input is a signal!
+%   This is known as Bartlett's method. Input is a signal, NOT an estimated PSD!
 global N;
+% 
+% while mod(N,K) ~= 0
+%     K = K + 1;
+% end
 
-M = N / K; %length of one segment
+M = N / K %length of one segment 
 M = floor(M);
 R_hat_avg = zeros(1,M);
 

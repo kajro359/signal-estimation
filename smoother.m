@@ -1,6 +1,5 @@
-function y = psd_smoothing(X, M, type)
+function y = smoother(X, type)
 %SMOOTHING Smooths a dataset
-%   M is width of window
 %   X the data to be smoothed
 %   type is type of window used('rect', 'hamming' or 'blackman')
 
@@ -26,8 +25,9 @@ end
         disp(length(w))
         W = fft(w);
         %plot(abs(W))
-        y = conv(W, X, 'same');
+        Y = conv(W, X, 'same');
         %y = y1(1:size(x));
+        
 
 end
 
