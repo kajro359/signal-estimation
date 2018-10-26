@@ -22,16 +22,13 @@ end
 %         plot(w)
         disp(length(w)) 
         
-        rx = acf_est(x);
+        rx = acf_est(x); 
         acf = rx .* w;
         w = w / M; 
         Rx = psd_est(x);
         Rx2 =[Rx Rx Rx];
         psd1 = conv(Rx2,w, 'same');
         psd = psd1(N+1 : 2*N);
-
-
-
 
 end
 

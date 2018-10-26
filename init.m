@@ -12,7 +12,7 @@ global fs n N t tl k K h count;
 tl = 10; %i'm setting the length in time of noise-signal to tl seconds.
 
 count = 0;
-N = 2^10; %set to 2^16 for demo
+N = 2^16; %set to 2^16 for demo
 t = (0:1:N-1);
 k = (-N/2:1:N/2-1);
 n = t;
@@ -62,5 +62,6 @@ yc = filter(f, e, x);
 % y3 = filter(b2, a2, x);
 %%
 figure(2)
-subplot(121), plot(y), axis tight, title('low order-filtered');
-subplot(122), plot(yb), axis tight, title('high order butter-filtered');
+% subplot(121), plot(y), axis tight, title('low order-filtered');
+% subplot(122), 
+plot(abs(fft(yb))), axis tight, title('high order butter-filtered');
