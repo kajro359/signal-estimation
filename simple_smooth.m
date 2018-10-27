@@ -10,7 +10,7 @@ if mod(M,2) == 0
 end
 mask = ones(1, M) / M;
 
-out_x = conv(x, mask, 'valid');
+out_x = conv(x, mask, 'same');
 
 end
 

@@ -23,9 +23,10 @@ end
 %         plot(w)
         disp(length(w)) 
         
+        disp(length(w)) 
         rx = acf_est(x); 
         acf = rx .* w;
-        w = w / M; 
+        w = 2*w / M; 
         Rx = psd_est(x);
         Rx2 = [Rx Rx Rx];
         psd1 = conv(Rx2,w, 'same'); %this is the smoothing from p227

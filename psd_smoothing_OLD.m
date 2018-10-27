@@ -1,4 +1,4 @@
-function y = psd_smoothing(X, M, type)
+function y = psd_smoothing_OLD(X, M, type)
 %SMOOTHING Smooths a dataset
 %   M is width of window
 %   X the data to be smoothed

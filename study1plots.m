@@ -6,14 +6,14 @@ global theta;
 figure(1)
 %%subplot(221)
 plot(K,acf_t1), axis([-N N -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'fontsize', 14), 
-    ylabel('$r_y(k)$','Interpreter','latex', 'fontsize', 14);
+    ylabel('$r_{y_1}(k)$','Interpreter','latex', 'fontsize', 14);
 
     %%
     %subplot(223)
 
 stem(K(N-20 : N+20),acf_t1(N-20 : N+20)), axis([-20 20 -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'fontsize', 14), 
-    ylabel('$r_y(k)$','Interpreter','latex', 'fontsize', 14);
-    
+    ylabel('$r_{y_1}(k)$','Interpreter','latex', 'fontsize', 14);
+   
 %%
 % theoretical PSD
 figure(2)
