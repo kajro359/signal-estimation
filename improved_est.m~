@@ -1,6 +1,5 @@
 function [acf,psd] = improved_est(x,type, winlength)
-%IMPROVED_EST Returns smoothed version of PSD and ACF multiplied by a
-%window
+%UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 M = floor(winlength);
 global N;
@@ -28,7 +27,7 @@ end
         w = w / M; 
         Rx = psd_est(x);
         Rx2 = [Rx Rx Rx];
-        psd1 = conv(Rx2,w, 'same'); %this is the smoothing from p227
+        psd1 = conv(Rx2,w, 'same'); %this is the smoothing from p
         psd = psd1(N+1 : 2*N);
 
 end

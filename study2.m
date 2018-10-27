@@ -11,6 +11,8 @@ global theta;
 %adn this is for ideal iflter output.
 [ry_2_imp, Ry_2_imp] = improved_est(yb, 'hamming',N / 100);
 
+
+
 %% PLOTS
 %% NON-ideal case
 %improved estimate of acf

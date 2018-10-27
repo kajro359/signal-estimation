@@ -1,11 +1,8 @@
-function y = psd_smoothing(X, M, type)
-%SMOOTHING Smooths a dataset
-%   M is width of window
-%   X the data to be smoothed
-%   type is type of window used('rect', 'hamming' or 'blackman')
-
-%smooth individual segments in per_avg=========?
-%may need to scale the transform
+function [acf,psd] = improved_est(x,type, winlength)
+%IMPROVED_EST Returns smoothed version of PSD and ACF multiplied by a
+%window
+%   Detailed explanation goes here
+M = floor(winlength);
 global N;
 if mod(M,2) == 0
     M = M-1; %N must be odd
@@ -13,21 +10,26 @@ end
 
 switch type
     case 'rect'
-        w = rectwin(M) / M;
+        w = rectwin(M);
     case 'hamming'
-        w = hamming(M) / M;
+        w = hamming(M);
     case 'blackman' 
-        w = blackman(M) / M;
+        w = blackman(M);
 end         
+        
         w = w';
-        w = padarray(w, [0 N/2 - floor(length(w)/2) - 1], 0, 'both');
+        w = padarray(w, [0 N - floor(length(w)/2) - 1], 0, 'both');
         w = [w 0];
-        plot(w)
-        disp(length(w))
-        W = fft(w);
-        %plot(abs(W))
-        y = conv(W, X, 'same');
-        %y = y1(1:size(x));
+%         plot(w)
+        disp(length(w)) 
+        
+        rx = acf_est(x); 
+        acf = rx .* w;
+        w = w / M; 
+        Rx = psd_est(x);
+        Rx2 = [Rx Rx Rx];
+        psd1 = conv(Rx2,w, 'same'); %this is the smoothing from p227
+        psd = psd1(N+1 : 2*N);
 
 end
 
