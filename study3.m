@@ -4,20 +4,31 @@
 f0 = 0.2;
 tt = linspace(-1, 1);
 
+% Rz_sq_0 = 4*f0*dirac(tt) + 4 * f0 * triangularPulse(-(1 / (2 * f0)), 0, (1 / (2 * f0)), tt);
+% thetaz = 0 : 1 / length(Rz_sq_0) : 1 - 1 / length(Rz_sq_0);
 
-Rz_sq_0 = 4*f0*dirac(tt) + 4 * f0 * triangularPulse(-(1 / 2 * f0), 0, (1 / 2 * f0), tt);
-% plot(Rz_sq_0);
+plot(Rz_sq_0), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
+    ylabel('$R_{Z_{sq}}[\theta]$','Interpreter','latex', 'fontsize', 20);
+
 %% squarer
-%theoretical PSD
-theta_a = linspace(0,1,10);
-Rz_sq_t = 4 * R0^2 * theta0 * triangularPulse(-theta0, 0, theta0, theta_a) + dirac(theta_a) * (2 * R0 * theta0)^2; 
-plot(theta_a, Rz_sq_t)
+%theoretical PSD this is the correct one
+theta_a = linspace(0,1,1000);
+%%
+Rz_sq_t = 4 * R0^2 * theta0 * triangularPulse(-theta0, 0, theta0, theta_a) + dirac(theta_a) * (2 * R0 * theta0)^2 + 4 * R0^2 * theta0 * triangularPulse(-theta0 + 1, 1, theta0 + 1, theta_a); 
+% plot(theta_a, Rz_sq_t)
+%%
+plot(theta_a,Rz_sq_t), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
+    ylabel('$R_{Z_{sq}}(\theta)$','Interpreter','latex', 'fontsize', 20),axis([0 1 0 10]);
+
 %%
 z_sq2 = yb .^ 2;
 
 % rz_sq = acf_est(z_sq2);
+figure(2)
 Rz_sq = psd_est(z_sq2);
-plot(Rz_sq),axis([0 N 0 10]);
+thetaz = 0 : 1 / length(Rz_sq) : 1 - 1 / length(Rz_sq);
+plot(thetaz,Rz_sq), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
+    ylabel('$\hat{R}_{Z_{sq}}(\theta)$','Interpreter','latex', 'fontsize', 20), axis([0 1 0 10]);
 
 % Rz_a = simple_smooth(per_avg(z_sq2, 20));
 % figure(2)
@@ -56,24 +67,33 @@ subplot(223), stem(rz_sq2(1024-40 : 1024 + 40));
 %% half wave rectifier
 %ideally filtered signal
 z_hw = hw_rect(yb);
-theta = 0 : 1 / length(z_hw) : 1 - 1 / length(z_hw);
+theta_hw = 0 : 1 / length(z_hw) : 1 - 1 / length(z_hw);
 %theoretical PSD
 % z_hw_th = (2 * R0 *theta0 * 1 / 2 * pi) * dirac(theta) + ; 
-
+%%
+Rz_hw_t = (R0 / (4*pi*theta0)) * dirac(theta_a+1/2) + (R0 / (16 * theta0 ^ 2)) * rectangularPulse(-theta0/2+1/2, theta0/2+1/2, theta_a) + (R0 /(16 * theta0^2)) * triangularPulse(-theta0 + 1/2, 1/2, theta0 + 1/2, theta_a);
+%%
+thetahw = 0 : 1 / length(Rz_hw_t) : 1 - 1 / length(Rz_hw_t);
+%%
+figure(1)
+plot(theta_a,Rz_hw_t), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
+    ylabel('$R_{Z_{hw}}(\theta)$','Interpreter','latex', 'fontsize', 20),axis([0 1 0 2]);
+%%
 % rz_hw = acf_est(z_hw);
 Rz_hw = psd_est(z_hw);
 
-%high-degrre
-% z_hw2 = hw_rect(yb);
+
 
 figure(3)
-plot(Rz_hw), axis([0 N 0 10]), title('Rz hw');
+
+plot(theta,Rz_hw), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
+    ylabel('$\hat{R}_{Z_{hw}}(\theta)$','Interpreter','latex', 'fontsize', 20),axis([0 1 0 10]);
 % subplot(221), plot(rz_hw), title('rz hw');
 % subplot(222), plot(Rz_hw), title('Rz hw');
 % subplot(223), stem(rz_hw(1024-40 : 1024 + 40));
 %% AM-SC
 %ideally filtered
-z_am = yb .* cos(0.9 * t);
+z_am = yb .* cos(1 * t);
 
 % rz_am = simple_smooth(acf_est(z_am));
 Rz_am = psd_est(z_am);

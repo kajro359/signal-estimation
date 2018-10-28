@@ -1,11 +1,12 @@
 % functions for study1 report
 %% constants
-R0 = 1;     %amplitude of noise PSD
-a = 0.5;    %constant in h[n] = a^n*u[n]
-theta0 = 0.5; %normalized cut-off frequency
-global theta;
-theta = normfreq;
+% R0 = 1;     %amplitude of noise PSD
+% a = 0.5;    %constant in h[n] = a^n*u[n]
+% theta0 = 0.5; %normalized cut-off frequency
+% global theta;
+% theta = normfreq;
 
+a = 0.5;    %constant in h[n] = a^n*u[n]
 %% Simple filter case -ACF and PSD etimated
 acf_t1 = (1 / 1 - a^2) * R0 * a.^(abs(K)); %theoretical acf
 
