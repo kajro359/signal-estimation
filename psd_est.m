@@ -10,5 +10,7 @@ Y = ifftshift(fft(y));
 % Y = fft(y);
 Ry_hat = (abs(Y) .^ 2) / N;
 
+Ry_hat = Ry_hat([N/2+1:N 1:N/2]);
+
 end
 

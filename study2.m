@@ -11,7 +11,7 @@ global theta;
 % [ry_1_imp, Ry_1_imp] = improved_est(y, 'hamming',N / 100);
 %
 %adn this is for ideal iflter output.
-% [ry_2_imp, Ry_2_imp] = improved_est(yb, 'hamming',N / 100);
+[ry_2_imp, Ry_2_imp] = improved_est(yb, 'hamming',N / 100);
 
 % Ry_1_imp = per_avg(psd_est1, 500);
 

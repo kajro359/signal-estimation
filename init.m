@@ -24,7 +24,7 @@ n = t;
 freq = 0 : 2*pi / N : 2*pi - (2*pi) / N; %normalized frequency vector ( ?? rad/s)(???)
 normfreq = freq / (2 * pi);
 R0 = 1;     %amplitude of noise PSD
-theta0 = 0.5; %normalized cut-off frequency
+theta0 = 0.25; %normalized cut-off frequency
 
 theta = normfreq;
 
@@ -67,5 +67,5 @@ yb = filter(d, c, x);
 % %%
 % figure(2)
 % % subplot(121), plot(y), axis tight, title('low order-filtered');
-% % subplot(122), 
+% % subplot(122),x 
 % plot(abs(fft(yb))), axis tight, title('high order butter-filtered');
