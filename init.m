@@ -40,10 +40,11 @@ x = wgn(1, N, 0);
 [b, a] = butter(1, theta0); %first-order LP-filter
 %a1, b1 numerator, denominator for 1st order filter.. doesn't seem so
 % %good-...
-a1 = 1;
-b1 = [0.5 0.5];
+a1 = [1 -0.5];
+b1 = 1/2; %this here coefficient may need tweaking (181127)
+freqz(b1,a1)
 
-y=filter(b, a, x);
+y=filter(b1, a1, x);
 % y33 = filter(lpFilt, x);
 % y2 = filter(b1, a1, x);
 % y2 = simplp(x);

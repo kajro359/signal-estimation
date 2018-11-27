@@ -10,13 +10,13 @@ plot(K,acf_t1), axis([-N N -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'font
 
     %% theoretical acf stem, low order filter
     %subplot(223)
-
+figure(1)
 stem(K(N-20 : N+20),acf_t1(N-20 : N+20)), axis([-20 20 -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'fontsize', 20), 
     ylabel('$r_{Y_1}(k)$','Interpreter','latex', 'fontsize', 20);
    
 %%
 % theoretical PSD
-figure(2)
+figure(1)
 % subplot(121)
 plot(theta, psd_t1), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
     ylabel('$R_{Y_1}(\theta)$','Interpreter','latex', 'fontsize', 20);
@@ -29,6 +29,8 @@ plot(K,acf_est1), axis([-N N -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'fo
     ylabel('$\hat{r}_{Y_1}(k)$','Interpreter','latex', 'fontsize', 20)
     %%
 % subplot(224)
+%estimated acf, simple filter, stem
+figure(2)
 stem(K(N-20 : N+20),acf_est1(N-20 : N+20)), axis([-20 20 -0.1 1.1]), xlabel('$k$','Interpreter','latex', 'fontsize', 20), 
     ylabel('$\hat r_{Y_1}(k)$','Interpreter','latex', 'fontsize', 20);
 %%
