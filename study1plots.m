@@ -21,7 +21,7 @@ figure(1)
 plot(theta, psd_t1), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
     ylabel('$R_{Y_1}(\theta)$','Interpreter','latex', 'fontsize', 20);
 %%
-% etimated ACF
+% etimated ACF simple filter
 % xtext = text('\hatr_{y}(k)','Interpreter','latex');
 figure(1)
 % subplot(222)

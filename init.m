@@ -37,11 +37,15 @@ x = wgn(1, N, 0);
 % figure(2), plot(x2);
 
 %%
-[b, a] = butter(1, theta0); %first-order LP-filter
+% [b, a] = butter(1, theta0); %first-order LP-filter
 %a1, b1 numerator, denominator for 1st order filter.. doesn't seem so
 % %good-...
 a1 = [1 -0.5];
-b1 = 1/2; %this here coefficient may need tweaking (181127)
+b1 = 1; %this here coefficient may need tweaking (181127) I THINK FILTER IS CORRECT NOW?? (181128)
+% G = sum(a1)+sum(b1)
+% a1 = a1/G;
+% b1 = b1/G;
+% figure
 freqz(b1,a1)
 
 y=filter(b1, a1, x);

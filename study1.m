@@ -8,13 +8,14 @@ oo = 0.5;    %constant in h[n] = a^n*u[n]
 
 a = 0.5;    %constant in h[n] = a^n*u[n]
 %% Simple filter case -ACF and PSD etimated
-acf_t1 = (1 / 1 - a^2) * R0 * oo.^(abs(K)); %theoretical acf
+acf_t1 = (1 / 1 - oo^2) * R0 * oo.^(abs(K)); %theoretical acf
 
-psd_t1 = R0 * 1 ./ (1 + a^2 - 2 * oo * cos(2 * pi * theta)); % theoretical psd, transform of acf_t1
+psd_t1 = R0 * 1 ./ (1 + oo^2 - 2 * oo * cos(2 * pi * theta)); % theoretical psd, transform of acf_t1
 
 acf_est1 = acf_est(y); %estimated acf
-psd_est1 = psd_est(y); %estimated psd
 
+psd_est1 = psd_est(y); %estimated psd
+a
 
 %% Ideal filter case 
 acf_t2 = (R0 / (2 * theta0)) * sinc(2 * theta0 * K); %theoretical acf

@@ -8,7 +8,8 @@ function Ry_hat = psd_est(y)
 N = length(y);
 Y = ifftshift(fft(y));
 % Y = fft(y);
-Ry_hat = (abs(Y) .^ 2) / N;
+% Ry_hat = (abs(Y) .^ 2) / N;
+Ry_hat = Y.*conj(Y)/N;
 
 Ry_hat = Ry_hat([N/2+1:N 1:N/2]);
 
