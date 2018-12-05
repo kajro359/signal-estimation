@@ -14,10 +14,10 @@ function r_hat = acf_est(y)
 %         count = count + 1;
     end
 
-    for h = 1:N-1
-        r_hat1(1) = r_hat1(1) + y(h)*y(h);
-%         count = count + 1;
-    end
+%     for h = 1:N-1
+%         r_hat1(1) = r_hat1(1) + y(h)*y(h);
+% %         count = count + 1;
+%     end
     
     
      for i = 2:N       
@@ -26,9 +26,10 @@ function r_hat = acf_est(y)
         end       
      end    
     
-    r_hat1 = r_hat1/N;
+%     r_hat1 = r_hat1/N;
     
-    r_hat(1:N) = flip(r_hat1); %this works if process is WSS? white noise is WSS
+    r_hat(1:N) = flip(r_hat1); %this works if process is WSS? white noise is WSS. acf is symm
     r_hat(N+1:end) = [r_hat1(2 : end) 0];
+    r_hat = r_hat/N;
 end
 
