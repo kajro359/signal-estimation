@@ -20,14 +20,18 @@ psd_est1 = psd_est(y); %estimated psd
 
 %% Ideal filter case 
 %since sampling freq. doubled in acf-signal, include scale var scl
-acf_t2 = scl * (R0 / (2 * theta0)) * sinc(2 * theta0 * K * scl); %theoretical acf
+% acf_t2 = scl * (R0 / (2 * theta0)) * sinc(2 * theta0 * K * scl); %theoretical acf
 
+acf_t2 =  (R0 / (2 * theta0)) * sinc(2 * theta0 * K);
  %is sampleperiod halved? yes --> theta -> 2*theta -> SCALING 
                                                 %scaling theorem 
 %%
 rep = 0 : 1 : 1;
-width = 2 * theta0;
-psd_t2 = (R0 / (4 * theta0^2)) * pulstran(theta, rep, 'rectpuls', width / 2); %theoretical psd
+width = 4 * theta0;
+psd_t2 = (R0 / (4 * (theta0)^2)) * pulstran(theta, rep, 'rectpuls', width / 2); %theoretical psd
+
+
+% psd_t2 = (R0 / (4 * (0.15)^2)) * pulstran(theta, rep, 'rectpuls', width / 2); %theoretical psd
 
 %%
 acf_est2 = acf_est(yb);

@@ -26,11 +26,13 @@ n = t;
 freq = 0 : 2*pi / N : 2*pi - (2*pi) / N; %normalized frequency vector ( ?? rad/s)(???)
 normfreq = freq / (2 * pi);
 R0 = 1;     %amplitude of noise PSD
-theta0 = 0.3; %normalized cut-off frequency
+theta0 = 0.15; %normalized cut-off frequency
 
 theta = normfreq;
 
 amp = 1 / (2*theta0);
+
+% amp = 1 / (theta0);
 
 K = [-flip(n) n+1];
 
@@ -61,7 +63,7 @@ y=filter(b1, a1, x);
 % subplot(122), plot(y2), axis tight, title('homemade-filtered');
 %% ideal filter
 
-[d, c] = butter(10, theta0); %7:th-order LP-filter, approximating ideal filter
+[d, c] = butter(10, 2*theta0); %7:th-order LP-filter, approximating ideal filter
 d = amp * d;                    %WITH THIS TJE FILTER IS GOOD. USE THIS CELL
 % fvtool(d,c)
 yb = filter(d, c, x);

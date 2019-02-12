@@ -1,3 +1,7 @@
+%%%%%
+%%OBSOLETE - USE V2 INSTEAD
+%%%%%
+
 %study 2 - improved estimates
 global theta;
 
