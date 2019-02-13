@@ -8,8 +8,8 @@ global N;
 %     K = K + 1;
 % end
 
-M = N / K; %length of one segment 
-M = floor(M);
+L = N / K; %length of one segment 
+M = floor(L);
 R_hat_avg = zeros(1,M);
 
 for i = 1 : K

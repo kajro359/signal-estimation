@@ -20,15 +20,23 @@ theta_a = linspace(0,1,1000);
 %     dirac(theta_a-1) * (2 * R0 * theta0)^2; 
 % plot(theta_a, Rz_sq_t)
 %% calulation 181207, changed coefficient IT IS CORRECT. Just double-check the transform
-Rz_sq_t = 2 * (R0/theta0)^2 * triangularPulse(-theta0*2, 0, theta0*2, theta_a) + ...
+Rz_sq_t = 1/(4 * (theta0^3)) * triangularPulse(-theta0*2, 0, theta0*2, theta_a) + ...
     dirac(theta_a) * (2 * R0 * theta0)^2 + ...
-    2 * R0^2 * (theta0^(-2)) * triangularPulse(-theta0*2 + 1, 1, theta0*2 + 1, theta_a) + ...
+    1/(4 * (theta0^3)) * triangularPulse(-theta0*2 + 1, 1, theta0*2 + 1, theta_a) + ...
     dirac(theta_a-1) * (2 * R0 * theta0)^2; 
+
+
+% Rz_sq_t=linspace(0,1,1000);
+% Rz_sq_t=zeros(1,1000);
+% Rz_sq_t(1:300) = 1-theta_a(1:300)*10/3;
+% Rz_sq_t(end-300+1:end) = theta_a(1:300)*10/3;
+% Rz_sq_t = Rz_sq_t * 2 * (R0/theta0)^2;
 
 Rz_sq_t(1) = 9999;
 Rz_sq_t(end) = 9999;
 %%
 figure(1)
+
 plot(theta_a,Rz_sq_t), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20), 
     ylabel('$R_{Z_{sq}}(\theta)$','Interpreter','latex', 'fontsize', 20),axis([0 1 0 200]);
 % axis tight;
@@ -39,7 +47,7 @@ z_sq2 = yb .^ 2;
 
 Rz_sq = psd_est(z_sq2);
 Rz_sq_avg = per_avg(z_sq2, N/100);
-[rz_sq_mult,Rz_sq_smooth] = improved_est(z_sq2, 'hamming', N/100);
+% [rz_sq_mult,Rz_sq_smooth] = improved_est(z_sq2, 'hamming', N/100);
 thetaz = 0 : 1 / length(Rz_sq) : 1 - 1 / length(Rz_sq);
 %% squarer figure
 figure(2)
@@ -47,6 +55,7 @@ plot(thetaz,Rz_sq), xlabel('$\theta$','Interpreter','latex', 'fontsize', 20),
     ylabel('$\hat{R}_{Z_{sq}}(\theta)$','Interpreter','latex', 'fontsize', 20), axis([0 1 0 200]);
 hold on;
 plot((0:1/length(Rz_sq_avg):1-1/length(Rz_sq_avg)),Rz_sq_avg, 'color', 'k', 'LineWidth', 1);
+plot(theta_a,Rz_sq_t, 'color', 'r');
 % plot(theta,Rz_sq_smooth, 'color', 'r', 'LineWidth', 1);axis([0 1 0 20])
 hold off;
 % axis tight;
